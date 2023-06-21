@@ -34,4 +34,4 @@ To use LinuxPatchManagement, you will need to:
 
 *****************************
 
-<sub> Edited by Zied BEN SALEM </sub>
+<sub> Edited by Zied BEN SALEM - </sub>
