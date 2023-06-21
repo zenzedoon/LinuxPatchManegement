@@ -1,0 +1,46 @@
+version: '3'
+services:
+  debian-mirror:
+    build: ./Debian
+    container_name: deb-apt-mirror
+    image: zenzedoon/deb-apt-mirror:v0.1
+    networks:
+      - deb-net
+    
+    ports:
+      - 8080:80
+    volumes:
+      - LocalAptMirror:/var/spool/apt-mirror
+
+  centos-mirror:
+    build: ./Centos
+    container_name: centos-yum-mirror 
+    image: zenzedoon/centos-yum-mirror:v0.1
+    networks:
+      - yum-net
+    ports:
+      - 8081:80
+    volumes:
+      - LocalYumMirror:/var/www/html/repos
+
+volumes:
+  LocalYumMirror:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /yum/
+      #device: /mnt/d/mirror/yum 
+ 
+  LocalAptMirror:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /apt/
+      #device: /mnt/d/mirror/apt
+
+
+networks:
+  deb-net:
+  yum-net:
